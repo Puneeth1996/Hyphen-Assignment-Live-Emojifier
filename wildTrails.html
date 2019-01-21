@@ -1,0 +1,418 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+  <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+<script type="text/babel">
+const {
+  HashRouter,
+  Switch,
+  Route,
+  Link
+} = ReactRouterDOM
+const wildTrail = [{
+number: 1,
+"sancname":"Bandipur National Park",
+"checkin":"10-Dec-2018",
+"checkout":"12-Dec-2018",
+"roomcombo":[  
+   {  
+      "adults":2,
+      "kids":1,
+      "infants":1
+   }
+  
+],
+"safarilst":[  
+   {  
+      "date":"10-Dec-2018",
+      "session":"evening",
+      "type":"Regular-Excluisve Gypsy"
+   },
+   {  
+      "date":"11-Dec-2018",
+      "session":"morning",
+      "type":"Regular-Excluisve Gypsy"
+   },
+   {  
+      "date":"11-Dec-2018",
+      "session":"evening",
+      "type":"Regular-Excluisve Gypsy"
+   },
+   {  
+      "date":"12-Dec-2018",
+      "session":"morning",
+      "type":"Regular-Excluisve Gypsy"
+   }
+],
+"resorttype":"Budget",
+"TotalCost": 245000
+},
+{
+number: 2,
+"sancname":"Pench National Park",
+"checkin":"10-Dec-2018",
+"checkout":"12-Dec-2018",
+"roomcombo":[  
+   {  
+      "adults":2,
+      "kids":1,
+      "infants":1
+   }
+  
+],
+"safarilst":[  
+   {  
+      "date":"10-Dec-2018",
+      "session":"evening",
+      "type":"Regular-Excluisve Gypsy"
+   },
+   {  
+      "date":"11-Dec-2018",
+      "session":"morning",
+      "type":"Regular-Excluisve Gypsy"
+   },
+   {  
+      "date":"11-Dec-2018",
+      "session":"evening",
+      "type":"Regular-Excluisve Gypsy"
+   },
+   {  
+      "date":"12-Dec-2018",
+      "session":"morning",
+      "type":"Regular-Excluisve Gypsy"
+   }
+],
+"resorttype":"Budget",
+"TotalCost": 245000
+},
+{
+number: 3,
+"sancname":"Tinda National Park",
+"checkin":"10-Dec-2018",
+"checkout":"12-Dec-2018",
+"roomcombo":[  
+   {  
+      "adults":2,
+      "kids":1,
+      "infants":1
+   }
+  
+],
+"safarilst":[  
+   {  
+      "date":"10-Dec-2018",
+      "session":"eveg",
+      "type":"Regular-Excluisve Gypsy"
+   },
+   {  
+      "date":"11-Dec-2018",
+      "session":"morning",
+      "type":"Reguluisve Gypsy"
+   },
+   {  
+      "date":"11-Dec-2018",
+      "session":"evening",
+      "type":"Regular-Excluisve "
+   },
+   {  
+      "date":"12-Dec-2018",
+      "session":"morning",
+      "type":"Regular-Excluisve Gypsy"
+   }
+],
+"resorttype":"Budget",
+"TotalCost": 245000
+}
+];
+const AllParks = () => (
+  <div>
+    <span>Wild Tours Lists </span>
+    <hr/>
+    <ul>
+      {
+        wildTrail.map( w => (        
+        <li key = {w.number}>
+          <Link to={`/parks/${w.number}`}>{w.number}. {w.sancname}</Link>
+        </li>
+        ))
+      }
+    </ul>
+  </div>
+)
+const ParkDetail = (props) => {
+  const parkDetail = wildTrail[props.match.params.number]
+  if(!parkDetail) {return <div>Sorry, but the we dont have that tour...</div>}
+  return (
+  <div>
+    <h1>{parkDetail.sancname}    {parkDetail.checkin} - out on - {parkDetail.checkout}</h1>
+    <h2>Roomcombo: adults - {parkDetail.roomcombo[0].adults} kids - {parkDetail.roomcombo[0].kids} infants - {parkDetail.roomcombo[0].infants}</h2>
+    <div>
+      {parkDetail.safarilst.length}
+     {parkDetail.safarilst.map( saf => (<li>{saf.date}{saf.session} of type {saf.type}</li>))}
+    </div>
+    <Link to='/parkDetail'>Back</Link>
+  </div>
+  )
+}
+const Parks = () => (
+  <Switch>
+    <Route exact path='/parks' component={AllParks}/>
+    <Route path='/parks/:number' component={ParkDetail}/>
+  </Switch>
+)
+const Schedule = () => (
+  <div>
+    <ul>
+      <li>6/5 @ Pench National Park</li>
+      <li>6/8 @ Bandhavgarh National Park</li>
+      <li>6/5 @ Pench National Park</li>
+      <li>6/8 @ Bandhavgarh National Park</li>
+      <li>6/14 @ Bandipur National Park</li>
+      <li>6/14 @ Bandipur National Park</li>
+    </ul>
+  </div>
+)
+const quotes = [
+  {
+    quote: "Don't cry because it's over, smile because it happened.",
+    author: "Dr. Seuss"
+  },
+  {
+    quote: "You only live once, but if you do it right, once is enough.",
+    author: "Mae West"
+  },
+  {
+    quote: "Be yourself; everyone else is already taken.",
+    author: "Oscar Wilde"
+  },
+  {
+    quote:
+    "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.",
+    author: "Albert Einstein"
+  },
+  { quote: "So many books, so little time.", author: "Frank Zappa" },
+  {
+    quote: "A room without books is like a body without a soul.",
+    author: "Marcus Tullius Cicero"
+  },
+  {
+    quote:
+    "If you want to know what a man's like, take a good look at how he treats his inferiors, not his equals.",
+    author: "J.K. Rowling"
+  }
+];
+const getRandomInt = function(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+};
+const Text = props => {
+  return <div id="text">{props.text}</div>;
+};
+const Author = props => {
+  return <span id="author">{props.text}</span>;
+};
+const Tweet = props => {
+  return (
+    <a
+      id="tweet-quote"
+      className="button"
+      href={"https://www.twitter.com/intent/tweet".concat(props.tweet)}
+      target="_blank"
+      >
+      <i className="fab fa-twitter"></i>
+    </a>
+  );
+};
+class Button extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  handleClick = () => {
+    console.log("Click happened in Button");
+    this.props.handleClick();
+  };
+render() {
+  return (
+    <button onClick={this.handleClick} type="button" id="new-quote">
+      {this.props.children}
+    </button>
+  );
+}
+}
+class QuoteBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quote: this.props.quote,
+      author: this.props.author
+    };
+  }
+  handleClick = () => {
+    console.log("Click handled by QuoteBox");    
+    let index = getRandomInt(quotes.length);
+    do {
+      index = getRandomInt(quotes.length);
+    }while (this.state.quote === quotes[index].quote)
+    this.setState(prevState => ({
+      quote: quotes[index].quote,
+      author: quotes[index].author
+    }));
+  };
+render() {
+  return (
+    <div id="quote-box">
+      <blockquote>
+        <Text text={this.state.quote} />
+        <cite>
+          <Author text={this.state.author} />
+        </cite>
+      </blockquote>
+      <div id="action">
+        <Tweet
+          tweet={encodeURI(
+            "?hashtags=quotes&related=freeCodeCamp&text="
+            .concat(this.state.quote)
+            .concat(" ")
+            .concat(this.state.author)
+          )}
+          />
+        <Button handleClick={this.handleClick}>New quote</Button>
+      </div>
+    </div>
+  );
+}
+}
+class Quote extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <QuoteBox
+        quote="There is nothing better than a friend, unless it is a friend with chocolate."
+        author="Linda Grayson"
+        />
+    );
+  }
+}
+const Home = () => (
+  <div>
+    <h1>Welcome to the Wild Tours!</h1>
+    <Quote />
+  </div>
+)
+const Main = () => (
+  <main>
+    <Switch>
+      <Route exact path='/' component={Home}/>
+      <Route path='/parks' component={Parks}/>
+      <Route path='/schedule' component={Schedule}/>
+    </Switch>
+  </main>
+)
+const Header = () => (
+  <header>
+    <nav>
+      <ul>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/parks'>Parks</Link></li>
+        <li><Link to='/schedule'>Schedule</Link></li>
+      </ul>
+    </nav>
+  </header>
+)
+const App = () => (
+  <div>
+    <Header />
+    <Main />
+  </div>
+)
+const Welcome = ({user, onSignOut})=> {
+  // This is a dumb "stateless" component
+  return (
+    <div>
+      <br/><hr/>
+      Welcome <strong>{user.username}</strong>!<br/><br/><br/>
+      <br/><hr/><br/>
+        <HashRouter><App /></HashRouter>
+      <br/><br/>
+      <hr/><br/><a href="javascript:;" onClick={onSignOut}>Sign out</a>
+      <hr/>
+    </div>
+  )
+}
+class LoginForm extends React.Component {
+   
+  handleSignIn(e) {
+    e.preventDefault()
+    let username = this.refs.username.value
+    let password = this.refs.password.value
+    this.props.onSignIn(username, password)
+  }
+  
+  render() {
+    return (
+      <form onSubmit={this.handleSignIn.bind(this)}>
+        <h3>Sign in</h3>
+        <input type="text" ref="username" placeholder="enter you username" />
+        <input type="password" ref="password" placeholder="enter password" />
+        <input type="submit" value="Login" />
+      </form>
+    )
+  }
+}
+class HomeLogin extends React.Component {
+  
+  constructor(props) {
+    super(props)
+    this.state = {
+      user: null
+    }
+  }
+  
+  signIn(username, password) {
+    this.setState({
+      user: {
+        username,
+        password,
+      }
+    })
+  }
+  
+  signOut() {
+    this.setState({user: null})
+  }
+  
+  render() {
+    return (
+      <div>
+        <h1>Welcome Back! </h1>
+        { 
+          (this.state.user) ? 
+            <Welcome 
+             user={this.state.user} 
+             onSignOut={this.signOut.bind(this)} 
+            />
+          :
+            <LoginForm 
+             onSignIn={this.signIn.bind(this)} 
+            />
+        }
+      </div>
+    )
+    
+  }
+  
+}
+function afterRender(){
+ReactDOM.render(<HomeLogin/>, document.getElementById("app"))
+}
+</script>
+</head>
+
+<body onLoad="afterRender()">
+<div id="app"></div>
+</body>
+</html>
